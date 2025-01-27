@@ -1,0 +1,16 @@
+<?php
+/** @var \Magento\Banner\Block\Ajax\Data $block */
+/** @codingStandardsIgnoreFile */
+?>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Banner/js/model/banner":
+                <?= /* @noEscape */ $this->helper(Magento\Framework\Json\Helper\Data::class)->jsonEncode([
+                    'sectionLoadUrl' => $block->getCustomerDataUrl('banner/ajax/load'),
+                    'cacheTtl' => $block->getCacheTtl(),
+                    'categoryId' => $block->getRequest()->getParam('id')
+                ]); ?>
+        }
+    }
+</script>
