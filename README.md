@@ -23,5 +23,6 @@ Widget added through Dynamic Block (install via patch with module) - this helps 
 - Go to Amin Panel -> Content -> Pages / Blocks
 - Select CMS Page/Block for edit.
 - Open "Content" fieldset.
-- Choose "Edit with Pagebuilder" and add Dynamic Block "Recently Purchased Widget".
+- Choose "Edit with Pagebuilder" 
+- Add Dynamic Block (from the left menu) and choose "Recently Purchased Widget" in it.
 - Save CMS Page/Blocks.

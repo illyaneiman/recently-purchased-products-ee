@@ -3,6 +3,7 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
     <module name="Ineiman_RecentlyPurchased">
         <sequence>
+            <module name="Ineiman_Base"/>
             <module name="Magento_Banner"/>
             <module name="Magento_CatalogWidget"/>
         </sequence>

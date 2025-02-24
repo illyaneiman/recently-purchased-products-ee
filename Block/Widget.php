@@ -8,6 +8,7 @@ use Ineiman\RecentlyPurchased\Model\RecentlyPurchaseManagement;
 use Magento\Catalog\Api\CategoryRepositoryInterface;
 use Magento\Catalog\Block\Product\Context;
 use Magento\Catalog\Model\Product\Visibility;
+use Magento\Catalog\Model\ResourceModel\Product\Collection;
 use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory;
 use Magento\CatalogWidget\Block\Product\ProductsList;
 use Magento\CatalogWidget\Model\Rule;
@@ -105,12 +106,30 @@ class Widget extends ProductsList
     /**
      * @inheritdoc
      */
-    public function createCollection()
+    public function getBaseCollection(): Collection
+    {
+        return $this->getFilteredCollection();
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function createCollection(): Collection
     {
         if (!$this->config->isEnabled($this->getStoreId())) {
             return $this->productCollectionFactory->create();
         }
 
+        return $this->getFilteredCollection();
+    }
+
+    /**
+     * Add filters to collection
+     *
+     * @return \Magento\Catalog\Model\ResourceModel\Product\Collection
+     */
+    private function getFilteredCollection(): Collection
+    {
         $productLimit = (int)$this->getData('products_count');
         $productCollection = $this->recentlyPurchaseManagement->getFilteredCollection(
             $productLimit,
