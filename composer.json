@@ -12,7 +12,7 @@
     "repositories": [
         {
             "type": "composer",
-            "url": "https://github.com/illyaneiman/recently-purchased-products.git"
+            "url": "https://github.com/illyaneiman/recently-purchased-products-ee.git"
         }
     ],
     "require": {

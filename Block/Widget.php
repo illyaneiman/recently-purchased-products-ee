@@ -1,4 +1,17 @@
 <?php
+/**
+ * Illia Neiman
+ *
+ * NOTICE OF LICENSE
+ *
+ * According to LICENCE file you are not allowed to copy, use or recreate this file in any ways.
+ * Specially for eCommerce usage.
+ *
+ * @category Ineiman
+ * @package RecentlyPurchased
+ * @copyright Copyright (c) 2021-current Ineiman (https://github.com/illyaneiman)
+ * @email kg.illya.ney@gmail.com
+ */
 declare(strict_types = 1);
 
 namespace Ineiman\RecentlyPurchased\Block;
@@ -31,6 +44,14 @@ class Widget extends ProductsList
      * @var \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory
      */
     protected $productCollectionFactory;
+
+    /**
+     * @var string[]
+     */
+    private $controllerNames = [
+        'ajax',
+        'category'
+    ];
 
     /**
      * Construct
@@ -124,7 +145,7 @@ class Widget extends ProductsList
     }
 
     /**
-     * Add filters to collection
+     * Create product collection and filter it by recently_purchased attribute, product limit in widget and category
      *
      * @return \Magento\Catalog\Model\ResourceModel\Product\Collection
      */
@@ -157,7 +178,7 @@ class Widget extends ProductsList
         $params = $request->getParams();
         $controllerName = $request->getControllerName();
 
-        if (($controllerName === 'category' || $controllerName === 'ajax') && isset($params['id'])) {
+        if ((in_array($controllerName, $this->controllerNames)) && isset($params['id'])) {
             return (int)$params['id'];
         }
 
